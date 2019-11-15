@@ -8,21 +8,22 @@ using std::istream;
 class String
 {
 private:
-    char* str;                //å­—ç¬¦ä¸²æŒ‡é’ˆ
-    int len;                //å­—ç¬¦ä¸²é•¿åº¦
-    static int num_strings;        //å¯¹è±¡ä¸ªæ•°
-    static const int CINLIM = 80;      //è¾“å…¥é™åˆ¶
+    char* str;                //×Ö·û´®Ö¸Õë
+    int len;                //×Ö·û´®³¤¶È
+    static int num_strings;        //¶ÔÏó¸öÊı
+    static const int CINLIM = 80;      //ÊäÈëÏŞÖÆ
 public:
     String();
     String(const char* s);
+    String(const String & st);
     ~String();
     int length () const {return len;}
 
-    void Stringlow();            //å°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—ç¬¦è½¬æ¢ä¸ºå°å†™
-    void Stringup();             //å°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—ç¬¦è½¬æ¢ä¸ºå¤§å†™
-    int str_time(const char c);              //æŸä¸€å­—ç¬¦åœ¨å­—ç¬¦ä¸²ä¸­å‡ºç°çš„æ¬¡æ•°
+    void Stringlow();            //½«×Ö·û´®ÖĞËùÓĞ×Ö·û×ª»»ÎªĞ¡Ğ´
+    void Stringup();             //½«×Ö·û´®ÖĞËùÓĞ×Ö·û×ª»»Îª´óĞ´
+    int str_time(const char c);              //Ä³Ò»×Ö·ûÔÚ×Ö·û´®ÖĞ³öÏÖµÄ´ÎÊı
 
-    //é‡è½½è¿ç®—ç¬¦æ–¹æ³•
+    //ÖØÔØÔËËã·û·½·¨
     String & operator= (const String &st);
     String & operator= (const char*st);
     char & operator [] (int i);
@@ -30,7 +31,7 @@ public:
     String operator+(const String &st) const;
     String operator+(const char * s) const;
 
-    //å‹å…ƒé‡è½½æ–¹æ³•
+    //ÓÑÔªÖØÔØ·½·¨
     friend bool operator<(const String &str1, const String &str2);
     friend bool operator>(const String &str1, const String &str2);
     friend bool operator==(const String &str1, const String &str2);
@@ -39,7 +40,7 @@ public:
     friend String operator+(const char * st1, const String & st2);
 
 
-    //é™æ€å‡½æ•°
+    //¾²Ì¬º¯Êı
     static int HowMany();
 };
 

@@ -5,7 +5,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-int String::num_strings = 0; //åˆå§‹åŒ–ç±»é™æ€æˆå‘˜
+int String::num_strings = 0; //³õÊ¼»¯Àà¾²Ì¬³ÉÔ±
 
 String::String()
 {
@@ -21,50 +21,50 @@ String::String(const char *s)
     str = new char[len + 1];
     std::strcpy(str, s);
     num_strings++;
-    cout << "ä½¿ç”¨(char* s)æ„å»º" << endl;
+    //cout << "Ê¹ÓÃ(char* s)¹¹½¨" << str << endl;
 }
 
-String::String(const String &st)
+String::String(const String & st)
 {
     num_strings++;
     len = st.len;
     str = new char[len + 1];
-    strcpy(str, st.str);
-    cout << "ä½¿ç”¨(String &)æ„å»º" << endl;
+    std::strcpy(str, st.str);
+    //cout << "\nÊ¹ÓÃ(String &)¹¹½¨" <<str<< endl;
 }
 
 String::~String()
 {
     --num_strings;
-    cout << "é”€æ¯å¯¹è±¡" << str << ", å‰©ä½™å¯¹è±¡ä¸ªæ•°ä¸º" << num_strings << endl;
+    //cout << "Ïú»Ù¶ÔÏó" << str << ", Ê£Óà¶ÔÏó¸öÊıÎª" << num_strings << endl;
     delete[] str;
 }
 
-void String::Stringlow() //å°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—ç¬¦è½¬æ¢ä¸ºå°å†™
+void String::Stringlow() //½«×Ö·û´®ÖĞËùÓĞ×Ö·û×ª»»ÎªĞ¡Ğ´
 {
     for (int i = 0; i < len; i++)
     {
         char ch = str[i];
-        if (isupper(ch))
+        if (std::isupper(ch))
         {
             str[i] = tolower(ch);
         }
     }
 }
 
-void String::Stringup() //å°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—ç¬¦è½¬æ¢ä¸ºå¤§å†™
+void String::Stringup() //½«×Ö·û´®ÖĞËùÓĞ×Ö·û×ª»»Îª´óĞ´
 {
     for (int i = 0; i < len; i++)
     {
         char ch = str[i];
-        if (islower(ch))
+        if (std::islower(ch))
         {
             str[i] = toupper(ch);
         }
     }
 }
 
-int String::str_time(const char c) //æŸä¸€å­—ç¬¦åœ¨å­—ç¬¦ä¸²ä¸­å‡ºç°çš„æ¬¡æ•°
+int String::str_time(const char c) //Ä³Ò»×Ö·ûÔÚ×Ö·û´®ÖĞ³öÏÖµÄ´ÎÊı
 {
     int show_time = 0;
 
@@ -78,8 +78,8 @@ int String::str_time(const char c) //æŸä¸€å­—ç¬¦åœ¨å­—ç¬¦ä¸²ä¸­å‡ºç°çš„æ¬¡æ•°
     return show_time;
 }
 
-//é‡è½½è¿ç®—ç¬¦æ–¹æ³•
-String &String::operator=(const String &st)
+//ÖØÔØÔËËã·û·½·¨
+String & String::operator=(const String &st)
 {
     if (this == &st)
     {
@@ -94,7 +94,7 @@ String &String::operator=(const String &st)
     return *this;
 }
 
-String &String::operator=(const char *st)
+String & String::operator=(const char *st)
 {
     delete[] str;
     len = std::strlen(st);
@@ -103,28 +103,38 @@ String &String::operator=(const char *st)
     return *this;
 }
 
-char &String::operator[](int i)
+char & String::operator[](int i)
 {
     return str[i];
 }
 
-const char &String::operator[](int i) const
+const char & String::operator[](int i) const
 {
     return str[i];
 }
 
-String String::operator+(const String &st) const //å‚æ•°ä¸èƒ½è¶…è¿‡2ä¸ª
+String String::operator+(const String &st) const //²ÎÊı²»ÄÜ³¬¹ı2¸ö
 {
     int len = std::strlen(str) + std::strlen(st.str);
     char *str_sum = new char[len + 1];
     std::strcpy(str_sum, str);
-    std::strcat(str_sum, st.str); //å°†st.stræ¥åœ¨str_sumçš„åé¢
-    String result = str_sum;      //å£°æ˜ä¸€ä¸ªStringç±»å¯¹è±¡ï¼Œå¹¶å°†str_sumçš„ç»“æœèµ‹ç»™å®ƒï¼Œ
-                                  //ä»¥å…å¿˜è®°é‡Šæ”¾str_sumçš„å†…å­˜
-    delete[] str_sum;             //é‡Šæ”¾str_numçš„å†…å­˜
+    std::strcat(str_sum, st.str); //½«st.str½ÓÔÚstr_sumµÄºóÃæ
+    String result = str_sum;      //ÉùÃ÷Ò»¸öStringÀà¶ÔÏó£¬²¢½«str_sumµÄ½á¹û¸³¸øËü£¬
+                                  //ÒÔÃâÍü¼ÇÊÍ·Åstr_sumµÄÄÚ´æ
+    delete[] str_sum;             //ÊÍ·Åstr_numµÄÄÚ´æ
+
+    return result;
 }
 
-//å‹å…ƒé‡è½½æ–¹æ³•
+
+String String::operator+(const char * s) const
+{
+    String temp = s;
+    String sum = *this + temp;
+    return sum;
+}
+
+//ÓÑÔªÖØÔØ·½·¨
 bool operator<(const String &str1, const String &str2)
 {
     return (std::strcmp(str1.str, str2.str) == 0);
@@ -157,31 +167,12 @@ istream &operator>>(istream &is, String &st)
     return is;
 }
 
-String String::operator+(const String & s) const
-{
-    int len = std::strlen(str) + std::strlen(s.str);
-    char * str_sum = new char [len+1];
-    std::strcpy(str_sum, str);
-    std::strcat(str_sum, s.str);
-    String str_new = str_sum; 
-    delete [] str_sum;
-
-    return str_new;
-}
-
-String String::operator+(const char * s) const
-{
-    String temp = s;
-    String sum = *this + temp;
-    return sum;
-}
-
 String operator+(const char * st1, const String & st2)
 {
     return st2 + st1;
 }
 
-//é™æ€å‡½æ•°
+//¾²Ì¬º¯Êı
 int String::HowMany()
 {
     return num_strings;

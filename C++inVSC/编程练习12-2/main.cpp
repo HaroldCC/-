@@ -5,9 +5,49 @@ using namespace std;
 
 int main(void)
 {
-     String s1(" æˆ‘æ˜¯å­¦ä¹ C++çš„ä¸€ä¸ªå­¦ç”Ÿã€‚");
-     String s2 = "è¯·è¾“å…¥ä½ çš„åå­—ï¼š";
+     String s1(" ÎÒÊÇÑ§Ï°C++µÄÒ»¸öÑ§Éú¡£");
+     String s2 = "ÇëÊäÈëÄãµÄÃû×Ö£º";
      String s3;
-     cout << s2;           //é‡è½½ << è¿ç®—ç¬¦
-     cin >> s3;            //é‡è½½ >> è¿ç®—ç¬¦
+     cout << s2;           //ÖØÔØ << ÔËËã·û
+     cin >> s3;            //ÖØÔØ >> ÔËËã·û
+     s2 = "ÎÒµÄÃû×ÖÊÇ" + s3;
+     cout << s2 << ".\n";
      s2 = s2 + s1;
+
+     s2.Stringup();
+     cout << "×Ö·û´®\n" << s2 << "\n°üº¬" << s2.str_time('A') << "¸ö×Ö·û¡®A¡¯¡£\n";
+
+     s1 = "red";    //String (const char*)
+                    //then String & operator= (const String&)
+     String rgb[3] = {String(s1), String ("green"), String("blue")};
+     cout << "ÊäÈë»ìºÏµÆ¹âµÄÔ­É«Ãû³Æ:";
+     String ans;
+     bool success = false;
+
+     while (cin >> ans)
+     {
+          ans.Stringlow();
+          for (int i = 0; i < 3; i++)
+          {
+               if (ans == rgb[i])             //ÖØÔØ == ÔËËã·û
+               {
+                    cout << "ÕıÈ·£¡\n";
+                    success = true;
+                    break;
+               }
+               
+          }
+
+          if (success)
+          {
+               break;
+          }
+          else
+          {
+               cout << "ÔÙ´Î³¢ÊÔ£¡" << endl;
+          }
+          
+     }
+     cout << "End!\n";
+     return 0;
+}
