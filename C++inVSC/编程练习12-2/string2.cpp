@@ -169,7 +169,7 @@ istream &operator>>(istream &is, String &st)
 
 String operator+(const char * st1, const String & st2)
 {
-    return st2 + st1;
+    return String(st1) + st2;
 }
 
 //¾²Ì¬º¯Êý
